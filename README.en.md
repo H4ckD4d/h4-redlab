@@ -71,3 +71,13 @@ redlab timeline samples/events.jsonl --minutes 10 --threshold 3
 ```
 
 **Chris Cruz — @h4ckd4d**.
+
+## v0.3 candidate enhancement
+
+Offline summary of incident alerts:
+
+```bash
+redlab report samples/events.jsonl
+```
+
+[Commercial roadmap](docs/COMMERCIAL.md) · Chris Cruz — @h4ckd4d.

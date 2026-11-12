@@ -30,3 +30,16 @@ class CoreTests(unittest.TestCase):
             p=Path(d)/'events.jsonl';p.write_text(json.dumps({'timestamp':'2026-01-01T00:00:00', 'event':'login_failed'})+'\n')
             with self.assertRaises(ValueError):
                 analyze_windowed(p)
+
+    def test_incident_report_count(self):
+        from redlab.core import incident_report
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d)/'events.jsonl'
+            rows=[{'timestamp':f'2026-01-01T00:0{i}:00Z','event':'login_failed','actor':'fiction'} for i in range(3)]
+            p.write_text(''.join(json.dumps(x)+'\n' for x in rows))
+            self.assertEqual(incident_report(p)['by_rule']['login-failure-burst'],1)
+    def test_incident_report_empty_log(self):
+        from redlab.core import incident_report
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d)/'events.jsonl';p.write_text('')
+            self.assertEqual(incident_report(p)['events'],0)

@@ -25,8 +25,13 @@ def configure(sub):
     t=sub.add_parser('timeline',help='Analyze timezone-aware fictional events in a sliding time window')
     t.add_argument('path');t.add_argument('--minutes',type=int,default=10)
     t.add_argument('--threshold',type=int,default=3)
+    r=sub.add_parser('report',help='Aggregate authorized offline incident signals')
+    r.add_argument('path');r.add_argument('--minutes',type=int,default=10)
+    r.add_argument('--threshold',type=int,default=3)
 
 def run(args):
+    if args.command=='report':
+        return incident_report(args.path,args.minutes,args.threshold)
     return analyze_windowed(args.path,args.minutes,args.threshold) if args.command=='timeline' else analyze(args.path)
 
 def demo():
@@ -75,3 +80,15 @@ def analyze_windowed(path, minutes=10, threshold=3):
             queue.clear()
     return {'events':len(parsed),'window_minutes':minutes,'threshold':threshold,
             'alerts':alerts,'note':'Offline analysis; requires synthetic or authorized data. Human review required.'}
+
+
+def incident_report(path, minutes=10, threshold=3):
+    """Summarize offline incident signals. No active network actions."""
+    timeline=analyze_windowed(path,minutes,threshold)
+    grouped={}
+    for alert in timeline['alerts']:
+        grouped[alert['rule']]=grouped.get(alert['rule'],0)+1
+    return {'format':'h4-redlab-report-v1','events':timeline['events'],
+            'alerts_total':len(timeline['alerts']),'by_rule':dict(sorted(grouped.items())),
+            'window_minutes':minutes,'threshold':threshold,
+            'note':'Synthetic/authorized event analysis only. Human review required.'}
