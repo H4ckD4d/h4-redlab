@@ -61,3 +61,23 @@ Apoyamos las labores legales de protección de vidas, rescate y seguridad de pro
 [Threat model](docs/THREAT_MODEL.md) · [Red Team engineering](docs/REDTEAM_ENGINEERING.md) · [Roadmap](docs/ROADMAP.md) · [Codex instructions](AGENTS.md)
 
 **© 2026 Chris Cruz (@h4ckd4d).**
+
+## Siguiente mejora técnica (v0.2 candidate)
+
+Análisis temporal sin conexión de fallos de inicio de sesión y cambios de privilegios en registros autorizados.
+
+```bash
+redlab timeline samples/events.jsonl --minutes 10 --threshold 3
+```
+
+**Chris Cruz — @h4ckd4d**.
+
+## Mejora candidata v0.3
+
+Offline summary of incident alerts:
+
+```bash
+redlab report samples/events.jsonl
+```
+
+[Commercial roadmap](docs/COMMERCIAL.md) · Chris Cruz — @h4ckd4d.
