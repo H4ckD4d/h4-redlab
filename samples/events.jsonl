@@ -1,0 +1,6 @@
+{"timestamp": "2026-01-01T00:00:01Z", "actor": "demo-user", "event": "login_failed", "origin": "192.0.2.10"}
+{"timestamp": "2026-01-01T00:00:02Z", "actor": "demo-user", "event": "login_failed", "origin": "192.0.2.10"}
+{"timestamp": "2026-01-01T00:00:03Z", "actor": "demo-user", "event": "login_failed", "origin": "192.0.2.10"}
+{"timestamp": "2026-01-01T00:00:04Z", "actor": "demo-user", "event": "login_success", "origin": "192.0.2.10"}
+{"timestamp": "2026-01-01T00:00:05Z", "actor": "demo-admin", "event": "privilege_granted", "origin": "192.0.2.20"}
+{"timestamp": "2026-01-01T00:00:06Z", "actor": "demo-user", "event": "logout", "origin": "192.0.2.10"}
