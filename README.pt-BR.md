@@ -61,3 +61,13 @@ Declaramos apoio ao trabalho lícito de proteção de vidas, salvamento e defesa
 [Threat model](docs/THREAT_MODEL.md) · [Red Team engineering](docs/REDTEAM_ENGINEERING.md) · [Roadmap](docs/ROADMAP.md) · [Codex instructions](AGENTS.md)
 
 **© 2026 Chris Cruz (@h4ckd4d).**
+
+## Próximo incremento técnico (v0.2 candidate)
+
+Análise offline de janelas temporais para falhas de login e privilégios em logs autorizados.
+
+```bash
+redlab timeline samples/events.jsonl --minutes 10 --threshold 3
+```
+
+**Chris Cruz — @h4ckd4d**.
